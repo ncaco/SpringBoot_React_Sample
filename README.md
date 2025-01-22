@@ -21,7 +21,7 @@
 
 ## 프로젝트 구조
 ```bash
-├── backend/ # 스프링부트 백엔드
+├── demo/ # 스프링부트 백엔드
 │ ├── src/
 │ │ ├── main/
 │ │ │ ├── java/ # 자바 소스 코드
@@ -47,7 +47,7 @@
 
 ### Backend 실행
 ```bash
-cd backend
+cd demo
 ./gradlew bootRun
 ```
 
@@ -64,7 +64,7 @@ npm start
 ## 개발 환경 설정
 1. JDK 17 설치
 2. Node.js 설치 (v16 이상)
-3. IDE 설정 (IntelliJ IDEA, VS Code 등)
+3. IDE 설정 (Cursor 등)
 
 ## 테스트
 - 백엔드 테스트: `./gradlew test`
