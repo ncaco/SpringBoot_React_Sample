@@ -48,3 +48,53 @@ export default tseslint.config({
   },
 })
 ```
+
+
+### 프로젝트 구조
+femo/
+│
+├── public/                  # 정적 파일 (HTML, 이미지, 폰트 등)
+│   ├── index.html
+│   ├── favicon.ico
+│   └── assets/              # 이미지, 아이콘 등
+│
+├── src/                     # 소스 코드
+│   ├── components/          # 재사용 가능한 컴포넌트
+│   │   ├── Header/
+│   │   ├── Footer/
+│   │   └── Sidebar/
+│   │
+│   ├── pages/               # 페이지 컴포넌트
+│   │   ├── Home/
+│   │   ├── About/
+│   │   ├── Blog/
+│   │   └── Admin/
+│   │
+│   ├── services/            # API 호출 및 서비스 로직
+│   │   ├── api.js
+│   │   └── auth.js
+│   │
+│   ├── hooks/               # 커스텀 훅
+│   │   └── useAuth.js
+│   │
+│   ├── context/             # React Context API 관련 파일
+│   │   └── AuthContext.js
+│   │
+│   ├── styles/              # 전역 스타일 및 테마
+│   │   ├── variables.css
+│   │   └── global.css
+│   │
+│   ├── utils/               # 유틸리티 함수
+│   │   └── helpers.js
+│   │
+│   ├── App.js               # 애플리케이션의 루트 컴포넌트
+│   └── index.js             # 진입점
+│
+├── tests/                   # 테스트 파일
+│   ├── components/
+│   └── pages/
+│
+├── .env                     # 환경 변수 파일
+├── .gitignore               # Git에서 무시할 파일 목록
+├── package.json             # 프로젝트 메타데이터 및 의존성
+└── README.md                # 프로젝트 설명
