@@ -1,3 +1,6 @@
 {
-    "java.compile.nullAnalysis.mode": "disabled"
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.autobuild.enabled": true,
+    "java.debug.settings.hotCodeReplace": "auto",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
