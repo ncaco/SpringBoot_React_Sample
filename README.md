@@ -1,81 +1,50 @@
-# SpringBoot_React_Sample
+# React + TypeScript + Vite
 
-## 프로젝트 소개
-스프링부트 + 리액트 + JPA를 활용한 풀스택 웹 애플리케이션 샘플 프로젝트입니다.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 기술 스택
-### Backend
-- Java 17
-- Spring Boot 3.x
-- Spring Data JPA
-- H2 Database
-- Lombok
-- Gradle
+Currently, two official plugins are available:
 
-### Frontend
-- React 18
-- Node.js
-- npm
-- React Router
-- Axios
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## 프로젝트 구조
-```bash
-├── demo/ # 스프링부트 백엔드
-│ ├── src/
-│ │ ├── main/
-│ │ │ ├── java/ # 자바 소스 코드
-│ │ │ └── resources/ # 설정 파일
-│ │ └── test/ # 테스트 코드
-│ └── build.gradle
-│
-└── frontend/ # 리액트 프론트엔드
-├── src/
-│ ├── components/ # 리액트 컴포넌트
-│ ├── pages/ # 페이지 컴포넌트
-│ └── services/ # API 서비스
-└── package.json
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
-## 주요 기능
-- 사용자 인증 (로그인/회원가입)
-- CRUD 기능 구현
-- RESTful API
-- 반응형 웹 디자인
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-## 시작하기
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
 
-### Backend 실행
-```bash
-cd demo
-./gradlew bootRun
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
 ```
-
-### Frontend 실행
-```bash
-cd frontend
-npm install
-npm start
-```
-
-## API 문서
-- Swagger UI: `http://localhost:8080/swagger-ui.html`
-
-## 개발 환경 설정
-1. JDK 17 설치
-2. Node.js 설치 (v16 이상)
-3. IDE 설정 (Cursor 등)
-
-## 테스트
-- 백엔드 테스트: `./gradlew test`
-- 프론트엔드 테스트: `npm test`
-
-## 라이선스
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
-## 기여하기
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
