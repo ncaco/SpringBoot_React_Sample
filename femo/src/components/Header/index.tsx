@@ -1,38 +1,25 @@
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-
-// 메뉴 아이템 타입 정의
-interface MenuItem {
-  path: string
-  label: string
-}
+import { useQuery } from '@tanstack/react-query'
+import { fetchMenuItems } from '../../api/menuApi'
+import { MenuItem } from './MenuItem'
+import { MenuItem as MenuItemType } from '../../types/menu'
 
 const Header = () => {
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
+  const { data: menuItems = [], isError, isLoading } = useQuery({
+    queryKey: ['menuItems'],
+    queryFn: fetchMenuItems,
+    staleTime: 5 * 60 * 1000,
+    retry: 1
+  })
 
-  useEffect(() => {
-    const fetchMenuItems = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/getMenuList')  // Spring Boot API 엔드포인트
-        const data = await response.json()
-        setMenuItems(data)
-      } catch (error) {
-        console.error('메뉴 데이터 로딩 실패:', error)
-        // 에러 시 기본 메뉴 표시
-      }
-    }
-
-    fetchMenuItems()
-  }, [])
+  if (isLoading) return <div>로딩 중...</div>
+  if (isError) return <div>메뉴를 불러오는데 실패했습니다.</div>
 
   return (
     <header className="header">
       <nav>
         <ul>
-          {menuItems.map((item) => (
-            <li key={item.path}>
-              <Link to={item.path}>{item.label}</Link>
-            </li>
+          {menuItems.map((item: MenuItemType, index: number) => (
+            <MenuItem key={`menu-${index}`} item={item} index={index} />
           ))}
         </ul>
       </nav>
